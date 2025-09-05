@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -33,7 +35,12 @@ foreach ($routes['blocked'] as $blocked) {
 // ----------------------
 foreach ($routes['rules'] as $pattern => $callback) {
     $regex = '#^' . str_replace('\*', '.*', preg_quote($pattern, '#')) . '$#';
-    if (preg_match($regex, $uri)) $callback();
+    if (preg_match($regex, $uri)) {
+        $callback($uri); // Execute the callback function, passing the URI
+        // Crucial change: Exit after the first matching rule is executed.
+        // This prevents the more general 'assets/*' block from being hit if a specific asset rule matches.
+        exit;
+    }
 }
 
 // ----------------------
@@ -62,6 +69,8 @@ if (file_exists($viewFile)) {
         include $viewFile; // fallback
     }
 } else {
+    // This 404 will now be hit for existing .js and .css files if .htaccess still routes them to index.php
+    // because there's no corresponding view file for 'assets/css/main.css'.
     http_response_code(404);
     echo "<h1>404 - View not found</h1>";
 }

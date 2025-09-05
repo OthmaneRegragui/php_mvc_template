@@ -9,6 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?= BASE_URL . 'assets/css/' ?>main.css">
+    <script src="<?= BASE_URL . 'assets/js/' ?>main.js"></script>
 </head>
 
 <body>
