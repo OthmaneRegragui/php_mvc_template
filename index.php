@@ -43,6 +43,7 @@ foreach ($routes['rules'] as $pattern => $callback) {
     }
 }
 
+
 // ----------------------
 // Determine type (default html)
 // ----------------------

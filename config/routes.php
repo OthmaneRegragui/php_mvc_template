@@ -1,10 +1,10 @@
-
 <?php
 return [
 
     // Blocked folders
     'blocked' => [
         'includes',
+        // 'assets', // REMOVED: Assets should be handled by specific rules, not blocked entirely
     ],
 
     'types' => [
@@ -22,7 +22,7 @@ return [
                 http_response_code(404);
                 echo "File not found.";
             }
-            exit;
+            exit; // Crucial: Stop further processing after serving the asset
         },
         'assets/css/*.css' => function ($uri) {
             $filepath = __DIR__ . '/../' . $uri; // Construct the full path to the asset
@@ -33,7 +33,7 @@ return [
                 http_response_code(404);
                 echo "File not found.";
             }
-            exit;
+            exit; // Crucial: Stop further processing after serving the asset
         },
 
         // This rule will only be hit if a more specific rule for .js or .css did not match,
