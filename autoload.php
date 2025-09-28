@@ -1,6 +1,8 @@
 <?php
 require_once "./bootstrap.php";
-
+foreach (glob(__DIR__ . '/functions/*.php') as $file) {
+    require_once $file;
+}
 spl_autoload_register('autoload');
 
 function autoload($class_name)
@@ -10,7 +12,6 @@ function autoload($class_name)
         'app/classes/',
         'models/',
         'controllers/',
-        'functions/',
         'widgets/',
     );
 
