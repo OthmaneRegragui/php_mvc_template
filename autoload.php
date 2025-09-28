@@ -9,7 +9,9 @@ function autoload($class_name)
         'database/',
         'app/classes/',
         'models/',
-        'controllers/'
+        'controllers/',
+        'functions/',
+        'widgets/',
     );
 
     $parts = explode('\\', $class_name);
